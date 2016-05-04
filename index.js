@@ -42,13 +42,15 @@ app.get('/*', function(req, res) {
 	 function(error, response, body){
 	 	if (error) {
 	 		throw error;
+	 		return;
 	 	}
 	var result = JSON.parse(body); //!!! super important
 
 	if (result.error) {
 		res.end(result.error.message);
+		return;
 	}
-	
+
 	result = result.items;
 	for (i = 0; i < result.length; i++) {
 		resultObject = {url: "",altText: "",pageURL: ""} //reset resultObject
