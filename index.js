@@ -11,7 +11,7 @@ var resultObject = {
 }
 
 app.get('/', function(req, res) {
-	res.end("<h1>Enter a url following the link to receive an Image Search Abstraction Layer!</h1><p>Example: localhost:5000/potato</p><p>To see recent searches, visit localhost:5000/searches");
+	res.end("<h1>Enter a url following the link to receive an Image Search Abstraction Layer!</h1><p>Example: https://lit-beach-37000.herokuapp.com/potato</p><p>To see recent searches, visit https://lit-beach-37000.herokuapp.com/searches");
 });
 
 app.get('/searches', function(req,res) {
