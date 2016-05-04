@@ -11,7 +11,7 @@ var resultObject = {
 }
 
 app.get('/', function(req, res) {
-	res.end("<h1>Enter a url following the link to receive an Image Search Abstraction Layer!</h1><p>Example: https://lit-beach-37000.herokuapp.com/potato</p><p>To see recent searches, visit https://lit-beach-37000.herokuapp.com/searches");
+	res.end("<h1>Enter a search term following the link</h1><p>Example: https://lit-beach-37000.herokuapp.com/potato</p><To paginate through the results, add ?offset=n with your desired offset.  Example: https://lit-beach-37000.herokuapp.com/potato?offset=1</p><p>To see recent searches, visit https://lit-beach-37000.herokuapp.com/searches</p>");
 });
 
 app.get('/searches', function(req,res) {
@@ -37,14 +37,14 @@ app.get('/*', function(req, res) {
 	history.timestamp = new Date(((new Date()).getTime()));
 	searchHistory.push(history);
 
-	url = "https://www.googleapis.com/customsearch/v1?q=" + url + "&prettyPring=&cx=015005922836724402492%3Akioqjqy-8ny&searchType=image&key=AIzaSyDycjZFCjFYveh-zEy1e_rTmoTXT3kGYB8";
+	url = "https://www.googleapis.com/customsearch/v1?q=" + url + "&prettyPring=&cx=015005922836724402492%3Akioqjqy-8ny&searchType=image&key=" + process.env.GOOG_API_KEY;
 	request.get(url,
 	 function(error, response, body){
 	 	if (error) {
 	 		throw error;
 	 		return;
 	 	}
-	var result = JSON.parse(body); //!!! super important
+	var result = JSON.parse(body); //important!
 
 	if (result.error) {
 		res.end(result.error.message);
