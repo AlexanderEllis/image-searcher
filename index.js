@@ -44,6 +44,11 @@ app.get('/*', function(req, res) {
 	 		throw error;
 	 	}
 	var result = JSON.parse(body); //!!! super important
+
+	if (result.error) {
+		res.end(result.error.message);
+	}
+	
 	result = result.items;
 	for (i = 0; i < result.length; i++) {
 		resultObject = {url: "",altText: "",pageURL: ""} //reset resultObject
